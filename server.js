@@ -11,6 +11,7 @@ const { MongoStore } = require('connect-mongo')
 
 const authCtrl = require('./controllers/auth')
 const passUserToView = require('./middleware/pass-user-to-view.js')
+const isSignedIn = require('./middleware/is-signed-in.js')
 
 const port = process.env.PORT ? process.env.PORT : "3000";
 
