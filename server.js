@@ -10,8 +10,8 @@ const session = require('express-session')
 const { MongoStore } = require('connect-mongo')
 
 const authCtrl = require('./controllers/auth')
+const passUserToView = require('./middleware/pass-user-to-view.js')
 
-// Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 
 
@@ -34,6 +34,8 @@ app.use(session({
         mongoUrl: process.env.MONGODB_URI
     }),
 }))
+
+app.use(passUserToView)
 
 app.get('/', (req, res) => {
     res.render('home.ejs', {
