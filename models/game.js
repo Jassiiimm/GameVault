@@ -5,17 +5,35 @@ const gameSchema = new mongoose.Schema(
         title: {
             type: String,
             required: true,
+            trim: true,
         },
         platform: {
             type: String,
             required: true,
+            trim: true,
         },
-        image: String,
-        description: String,
-        status: String,
-        isPublic: Boolean,
-        genre: String,
-        hoursPlayed: Number,
+        image: {
+            type: String,
+            trim: true,
+        },
+        description: {
+            type: String,
+            trim: true,
+        },
+        status: {
+            type: String,
+        },
+        isPublic: {
+            type: Boolean,
+        },
+        genre: {
+            type: String,
+            trim: true,
+        },
+        hoursPlayed: {
+            type: Number,
+            min: 0,
+        },
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
