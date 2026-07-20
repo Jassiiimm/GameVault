@@ -21,12 +21,11 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-// Middleware to parse URL-encoded data from forms
-app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
-app.use(methodOverride("_method"));
-// Morgan for logging HTTP requests
-app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }))
+app.use(methodOverride("_method"))
+app.use(express.static('public'));
+app.use(morgan('dev'))
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
