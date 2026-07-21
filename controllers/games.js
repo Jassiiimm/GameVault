@@ -3,6 +3,16 @@ const Game = require('../models/game')
 const newGame = (req, res) => {
     res.render('games/new.ejs')
 }
+
+const create = async (req, res) => {
+    req.body.isPublic = req.body.isPublic === 'on'
+    req.body.owner = req.session.user._id
+
+    await Game.create(req.body)
+
+    res.redirect('/games')
+}
+
 const index = async (req, res) => {
     const games = await Game.find()
 
@@ -10,6 +20,7 @@ const index = async (req, res) => {
         games: games,
     })
 }
+
 const show = async (req, res) => {
     const game = await Game.findById(req.params.gameId)
 
@@ -20,6 +31,7 @@ const show = async (req, res) => {
 
 module.exports = {
     new: newGame,
+    create: create,
     index: index,
     show: show,
 }
