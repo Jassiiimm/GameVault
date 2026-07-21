@@ -23,10 +23,12 @@
 
     <a href="/games">Back to Games</a>
 
-    <a href="/games/<%= game._id %>/edit">Edit Game</a>
+    <% if (user && game.owner.equals(user._id)) { %>
+        <a href="/games/<%= game._id %>/edit">Edit Game</a>
 
-    <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Game</button>
-    </form>
+        <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete Game</button>
+        </form>
+    <% } %>
 </body>
 </html>
