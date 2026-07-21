@@ -14,7 +14,20 @@ const create = async (req, res) => {
 }
 
 const index = async (req, res) => {
-    const games = await Game.find()
+    let games
+
+    if (req.session.user) {
+        games = await Game.find({
+            $or: [
+                { isPublic: true },
+                { owner: req.session.user._id },
+            ],
+        })
+    } else {
+        games = await Game.find({
+            isPublic: true,
+        })
+    }
 
     res.render('games/index.ejs', {
         games: games,
@@ -23,6 +36,14 @@ const index = async (req, res) => {
 
 const show = async (req, res) => {
     const game = await Game.findById(req.params.gameId)
+
+    const isCreator =
+        req.session.user &&
+        game.owner.equals(req.session.user._id)
+
+    if (!game.isPublic && !isCreator) {
+        return res.redirect('/games')
+    }
 
     res.render('games/show.ejs', {
         game: game,
