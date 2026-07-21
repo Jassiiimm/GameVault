@@ -35,10 +35,19 @@ const deleteGame = async (req, res) => {
     res.redirect('/games')
 }
 
+const edit = async (req, res) => {
+    const game = await Game.findById(req.params.gameId)
+
+    res.render('games/edit.ejs', {
+        game: game,
+    })
+}
+
 module.exports = {
     new: newGame,
     create: create,
     index: index,
     show: show,
     deleteGame: deleteGame,
+    edit: edit,
 }
