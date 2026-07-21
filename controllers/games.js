@@ -29,9 +29,16 @@ const show = async (req, res) => {
     })
 }
 
+const deleteGame = async (req, res) => {
+    await Game.findByIdAndDelete(req.params.gameId)
+
+    res.redirect('/games')
+}
+
 module.exports = {
     new: newGame,
     create: create,
     index: index,
     show: show,
+    deleteGame: deleteGame,
 }
