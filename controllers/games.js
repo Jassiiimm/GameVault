@@ -30,6 +30,12 @@ const show = async (req, res) => {
 }
 
 const deleteGame = async (req, res) => {
+    const game = await Game.findById(req.params.gameId)
+
+    if (!game.owner.equals(req.session.user._id)) {
+        return res.redirect(`/games/${req.params.gameId}`)
+    }
+
     await Game.findByIdAndDelete(req.params.gameId)
 
     res.redirect('/games')
@@ -38,11 +44,22 @@ const deleteGame = async (req, res) => {
 const edit = async (req, res) => {
     const game = await Game.findById(req.params.gameId)
 
+    if (!game.owner.equals(req.session.user._id)) {
+        return res.redirect(`/games/${req.params.gameId}`)
+    }
+
     res.render('games/edit.ejs', {
         game: game,
     })
 }
+
 const update = async (req, res) => {
+    const game = await Game.findById(req.params.gameId)
+
+    if (!game.owner.equals(req.session.user._id)) {
+        return res.redirect(`/games/${req.params.gameId}`)
+    }
+
     req.body.isPublic = req.body.isPublic === 'on'
 
     await Game.findByIdAndUpdate(req.params.gameId, req.body)
