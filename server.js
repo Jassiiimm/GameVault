@@ -59,6 +59,7 @@ app.get("/games", gamesController.index)
 app.get("/games/:gameId", gamesController.show)
 app.delete('/games/:gameId', isSignedIn, gamesController.deleteGame)
 app.get('/games/:gameId/edit', isSignedIn, gamesController.edit)
+app.put('/games/:gameId', isSignedIn, gamesController.update)
 
 app.get("/dashboard", async (req, res) => {
     if (!req.session.user) {

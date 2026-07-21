@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Game</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <h1>Edit Game</h1>
+
+    <form action="/games/<%= game._id %>?_method=PUT" method="POST">
+        <label for="title">Title:</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= game.title %>"
+            required
+        >
+
+        <label for="platform">Platform:</label>
+        <input
+            type="text"
+            id="platform"
+            name="platform"
+            value="<%= game.platform %>"
+            required
+        >
+
+        <label for="genre">Genre:</label>
+        <input
+            type="text"
+            id="genre"
+            name="genre"
+            value="<%= game.genre %>"
+        >
+
+        <label for="image">Image URL:</label>
+        <input
+            type="text"
+            id="image"
+            name="image"
+            value="<%= game.image %>"
+        >
+
+        <label for="description">Description:</label>
+        <textarea
+            id="description"
+            name="description"
+        ><%= game.description %></textarea>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="Want to Play" <%= game.status === 'Want to Play' ? 'selected' : '' %>>
+                Want to Play
+            </option>
+            <option value="Playing" <%= game.status === 'Playing' ? 'selected' : '' %>>
+                Playing
+            </option>
+            <option value="Completed" <%= game.status === 'Completed' ? 'selected' : '' %>>
+                Completed
+            </option>
+        </select>
+
+        <label for="hoursPlayed">Hours Played:</label>
+        <input
+            type="number"
+            id="hoursPlayed"
+            name="hoursPlayed"
+            value="<%= game.hoursPlayed %>"
+            min="0"
+        >
+
+        <label for="isPublic">Public:</label>
+        <input
+            type="checkbox"
+            id="isPublic"
+            name="isPublic"
+            <%= game.isPublic ? 'checked' : '' %>
+        >
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

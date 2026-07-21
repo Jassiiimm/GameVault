@@ -42,6 +42,13 @@ const edit = async (req, res) => {
         game: game,
     })
 }
+const update = async (req, res) => {
+    req.body.isPublic = req.body.isPublic === 'on'
+
+    await Game.findByIdAndUpdate(req.params.gameId, req.body)
+
+    res.redirect(`/games/${req.params.gameId}`)
+}
 
 module.exports = {
     new: newGame,
@@ -50,4 +57,5 @@ module.exports = {
     show: show,
     deleteGame: deleteGame,
     edit: edit,
+    update: update,
 }
