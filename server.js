@@ -10,6 +10,7 @@ const session = require('express-session')
 const { MongoStore } = require('connect-mongo')
 
 const authCtrl = require('./controllers/auth')
+const gamesController = require('./controllers/games')
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const isSignedIn = require('./middleware/is-signed-in.js')
 
@@ -49,6 +50,11 @@ app.post('/auth/sign-up', authCtrl.signUp)
 app.get('/auth/sign-in', authCtrl.showSignInForm)
 app.post('/auth/sign-in', authCtrl.signIn)
 app.delete('/auth/sign-out', authCtrl.signOut)
+
+app.get('/games/new', isSignedIn, gamesController.new)
+app.get('/games', gamesController.index)
+app.get('/games/:gameId', gamesController.show)
+
 
 app.get('/dashboard', async (req, res) => {
     if (!req.session.user){
