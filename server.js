@@ -65,6 +65,18 @@ app.put('/games/:gameId', isSignedIn, gamesController.update)
 
 app.post("/games/:gameId/reviews", isSignedIn, reviewsController.create)
 
+app.get(
+    "/games/:gameId/reviews/:reviewId/edit",
+    isSignedIn,
+    reviewsController.edit
+)
+
+app.put(
+    "/games/:gameId/reviews/:reviewId",
+    isSignedIn,
+    reviewsController.update
+)
+
 app.delete(
     "/games/:gameId/reviews/:reviewId",
     isSignedIn,
