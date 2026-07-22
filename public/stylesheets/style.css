@@ -121,3 +121,13 @@ textarea {
 #isPublic {
     width: auto;
 }
+
+button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
