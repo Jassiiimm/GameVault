@@ -9,6 +9,19 @@ const create = async (req, res) => {
     res.redirect(`/games/${req.params.gameId}`)
 }
 
+const deleteReview = async (req, res) => {
+    const review = await Review.findById(req.params.reviewId)
+
+    if (!review.author.equals(req.session.user._id)) {
+        return res.redirect(`/games/${req.params.gameId}`)
+    }
+
+    await Review.findByIdAndDelete(req.params.reviewId)
+
+    res.redirect(`/games/${req.params.gameId}`)
+}
+
 module.exports = {
     create: create,
+    deleteReview: deleteReview,
 }

@@ -65,6 +65,12 @@ app.put('/games/:gameId', isSignedIn, gamesController.update)
 
 app.post("/games/:gameId/reviews", isSignedIn, reviewsController.create)
 
+app.delete(
+    "/games/:gameId/reviews/:reviewId",
+    isSignedIn,
+    reviewsController.deleteReview
+)
+
 app.get("/dashboard", async (req, res) => {
     if (!req.session.user) {
         return res.redirect("/auth/sign-in")
