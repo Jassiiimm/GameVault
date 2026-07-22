@@ -2,7 +2,9 @@ const User = require('../models/user')
 const bcrypt = require('bcrypt')
 
 const showSignUpForm = (req, res) => {
-    res.render('auth/sign-up.ejs')
+    res.render('auth/sign-up.ejs', {
+        error: null
+    })
 }
 
 const signUp = async (req, res) => {
@@ -11,7 +13,15 @@ const signUp = async (req, res) => {
     })
 
     if (userInDatabase) {
-        return res.send('Username already taken.')
+        return res.render('auth/sign-up.ejs', {
+            error: 'Username already taken.'
+        })
+    }
+
+    if (req.body.password !== req.body.confirmPassword) {
+        return res.render('auth/sign-up.ejs', {
+            error: 'Passwords do not match.'
+        })
     }
 
     let userData = {}
@@ -26,13 +36,16 @@ const signUp = async (req, res) => {
         username: user.username,
         _id: user._id
     }
+
     req.session.save(() => {
         res.redirect('/')
     })
 }
 
 const showSignInForm = (req, res) => {
-    res.render('auth/sign-in.ejs')
+    res.render('auth/sign-in.ejs', {
+        error: null
+    })
 }
 
 const signIn = async (req, res) => {
@@ -41,19 +54,27 @@ const signIn = async (req, res) => {
     })
 
     if (!userInDatabase) {
-        return res.send('User does not exist.')
+        return res.render('auth/sign-in.ejs', {
+            error: 'User does not exist.'
+        })
     }
 
-    const validPassword = bcrypt.compareSync(req.body.password, userInDatabase.password)
+    const validPassword = bcrypt.compareSync(
+        req.body.password,
+        userInDatabase.password
+    )
 
-    if(!validPassword) {
-        return res.send('Login failed. Please try again.')
+    if (!validPassword) {
+        return res.render('auth/sign-in.ejs', {
+            error: 'Login failed. Please try again.'
+        })
     }
 
     req.session.user = {
         username: userInDatabase.username,
         _id: userInDatabase._id
     }
+
     req.session.save(() => {
         res.redirect('/')
     })
