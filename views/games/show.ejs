@@ -14,7 +14,6 @@
     <% if (game.image) { %>
         <img src="<%= game.image %>" alt="<%= game.title %>">
     <% } %>
-
     <p>Platform: <%= game.platform %></p>
     <p>Genre: <%= game.genre %></p>
     <p>Status: <%= game.status %></p>
@@ -25,9 +24,35 @@
 
     <% if (user && game.owner.equals(user._id)) { %>
         <a href="/games/<%= game._id %>/edit">Edit Game</a>
-
+        
         <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
             <button type="submit">Delete Game</button>
+        </form>
+        <% } %>
+        
+        <% if (user) { %>
+            <h2>Add a Review</h2>
+            <form action="/games/<%= game._id %>/reviews" method="POST">
+                <label for="rating">Rating:</label>
+                
+                <select id="rating" name="rating" required>
+                <option value="">Choose a rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            
+            <label for="comment">Comment:</label>
+            
+            <textarea
+                id="comment"
+                name="comment"
+                required
+            ></textarea>
+
+            <button type="submit">Add Review</button>
         </form>
     <% } %>
 </body>
