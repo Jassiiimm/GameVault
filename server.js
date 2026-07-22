@@ -20,10 +20,6 @@ const port = process.env.PORT ? process.env.PORT : "3000"
 
 mongoose.connect(process.env.MONGODB_URI)
 
-mongoose.connection.on("connected", () => {
-    console.log(`Connected to MongoDB ${mongoose.connection.name}.`)
-})
-
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"))
 app.use(express.static("public"))
@@ -57,13 +53,17 @@ app.delete("/auth/sign-out", authCtrl.signOut)
 app.get("/games/new", isSignedIn, gamesController.new)
 app.post("/games", isSignedIn, gamesController.create)
 app.get("/games", gamesController.index)
-app.get('/games/mine', isSignedIn, gamesController.mine)
+app.get("/games/mine", isSignedIn, gamesController.mine)
 app.get("/games/:gameId", gamesController.show)
-app.delete('/games/:gameId', isSignedIn, gamesController.deleteGame)
-app.get('/games/:gameId/edit', isSignedIn, gamesController.edit)
-app.put('/games/:gameId', isSignedIn, gamesController.update)
+app.delete("/games/:gameId", isSignedIn, gamesController.deleteGame)
+app.get("/games/:gameId/edit", isSignedIn, gamesController.edit)
+app.put("/games/:gameId", isSignedIn, gamesController.update)
 
-app.post("/games/:gameId/reviews", isSignedIn, reviewsController.create)
+app.post(
+    "/games/:gameId/reviews",
+    isSignedIn,
+    reviewsController.create
+)
 
 app.get(
     "/games/:gameId/reviews/:reviewId/edit",
@@ -83,16 +83,10 @@ app.delete(
     reviewsController.deleteReview
 )
 
-app.get("/dashboard", async (req, res) => {
-    if (!req.session.user) {
-        return res.redirect("/auth/sign-in")
-    }
-
+app.get("/dashboard", isSignedIn, (req, res) => {
     res.render("dashboard.ejs", {
         user: req.session.user,
     })
 })
 
-app.listen(port, () => {
-    console.log(`The express app is ready on port ${port}!`)
-})
+app.listen(port)
