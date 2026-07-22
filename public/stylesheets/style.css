@@ -40,3 +40,13 @@ nav a {
     text-decoration: none;
 }
 
+nav form {
+    width: auto;
+    margin: 0;
+    margin-left: auto;
+    padding: 0;
+}
+
+nav button {
+    margin: 0;
+}
