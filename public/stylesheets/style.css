@@ -35,3 +35,8 @@ nav {
     background-color: #1e293b;
 }
 
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
