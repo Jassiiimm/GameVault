@@ -26,3 +26,12 @@ p {
 a {
     color: #60a5fa;
 }
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #1e293b;
+}
+
