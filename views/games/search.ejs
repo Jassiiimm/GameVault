@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Games</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <h1>Search Results</h1>
+
+    <% if (games.length === 0) { %>
+        <p>No games were found.</p>
+    <% } %>
+
+    <% games.forEach((game) => { %>
+        <article>
+            <% if (game.background_image) { %>
+                <img
+                    src="<%= game.background_image %>"
+                    alt="<%= game.name %>"
+                >
+            <% } %>
+
+            <h2><%= game.name %></h2>
+
+            <p>Released: <%= game.released %></p>
+            <p>Rating: <%= game.rating %>/5</p>
+
+            <a href="/games/new?title=<%= encodeURIComponent(game.name) %>&image=<%= encodeURIComponent(game.background_image || '') %>">
+                Add to GameVault
+            </a>
+        </article>
+    <% }) %>
+
+    <p>
+        Game information and images provided by
+        <a href="https://rawg.io" target="_blank">RAWG</a>.
+    </p>
+</body>
+</html>

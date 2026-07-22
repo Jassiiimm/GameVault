@@ -12,7 +12,10 @@
     <h1><%= game.title %></h1>
 
     <% if (game.image) { %>
-        <img src="<%= game.image %>" alt="<%= game.title %>">
+        <img
+            src="<%= game.image %>"
+            alt="<%= game.title %>"
+        >
     <% } %>
 
     <p>Platform: <%= game.platform %></p>
@@ -21,15 +24,22 @@
     <p>Hours Played: <%= game.hoursPlayed %></p>
     <p>Description: <%= game.description %></p>
 
-    <a href="/games">Back to Games</a>
+    <div class="game-actions">
+        <a href="/games">Back to Games</a>
 
-    <% if (user && game.owner.equals(user._id)) { %>
-        <a href="/games/<%= game._id %>/edit">Edit Game</a>
+        <% if (user && game.owner.equals(user._id)) { %>
+            <a href="/games/<%= game._id %>/edit">
+                Edit Game
+            </a>
 
-        <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete Game</button>
-        </form>
-    <% } %>
+            <form
+                action="/games/<%= game._id %>?_method=DELETE"
+                method="POST"
+            >
+                <button type="submit">Delete Game</button>
+            </form>
+        <% } %>
+    </div>
 
     <h2>Reviews</h2>
 
@@ -48,7 +58,10 @@
                     Edit Review
                 </a>
 
-                <form action="/games/<%= game._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <form
+                    action="/games/<%= game._id %>/reviews/<%= review._id %>?_method=DELETE"
+                    method="POST"
+                >
                     <button type="submit">Delete Review</button>
                 </form>
             <% } %>
@@ -71,7 +84,12 @@
             </select>
 
             <label for="comment">Comment:</label>
-            <textarea id="comment" name="comment" required></textarea>
+
+            <textarea
+                id="comment"
+                name="comment"
+                required
+            ></textarea>
 
             <button type="submit">Add Review</button>
         </form>

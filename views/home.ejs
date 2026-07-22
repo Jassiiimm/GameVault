@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameVault</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
 
-    <% if (user) { %>
-        <h1>Welcome to GameVault, <%= user.username %></h1>
-    <% } else { %>
-        <h1>Welcome to GameVault</h1>
-    <% } %>
+    <section class="home-section">
+        <% if (user) { %>
+            <h1>Welcome to GameVault, <%= user.username %></h1>
+        <% } else { %>
+            <h1>Welcome to GameVault</h1>
+        <% } %>
+
+        <p>
+            Keep track of the games you want to play,
+            are currently playing, or have completed.
+        </p>
+
+        <p>
+            Add games, record your hours, and share reviews
+            with other users
+        </p>
+    </section>
 </body>
 </html>

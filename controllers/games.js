@@ -2,7 +2,24 @@ const Game = require('../models/game')
 const Review = require('../models/review')
 
 const newGame = (req, res) => {
-    res.render('games/new.ejs')
+    res.render('games/new.ejs', {
+        title: req.query.title || '',
+        image: req.query.image || '',
+    })
+}
+
+const search = async (req, res) => {
+    const gameTitle = req.query.title
+
+    const response = await fetch(
+        `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&search=${encodeURIComponent(gameTitle)}`
+    )
+
+    const data = await response.json()
+
+    res.render('games/search.ejs', {
+        games: data.results,
+    })
 }
 
 const create = async (req, res) => {
@@ -93,6 +110,7 @@ const update = async (req, res) => {
 
     res.redirect(`/games/${req.params.gameId}`)
 }
+
 const mine = async (req, res) => {
     const games = await Game.find({
         owner: req.session.user._id,
@@ -105,6 +123,7 @@ const mine = async (req, res) => {
 
 module.exports = {
     new: newGame,
+    search: search,
     create: create,
     index: index,
     show: show,
