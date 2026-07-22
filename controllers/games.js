@@ -87,6 +87,15 @@ const update = async (req, res) => {
 
     res.redirect(`/games/${req.params.gameId}`)
 }
+const mine = async (req, res) => {
+    const games = await Game.find({
+        owner: req.session.user._id,
+    })
+
+    res.render('games/mine.ejs', {
+        games: games,
+    })
+}
 
 module.exports = {
     new: newGame,
@@ -96,4 +105,5 @@ module.exports = {
     deleteGame: deleteGame,
     edit: edit,
     update: update,
+    mine: mine,
 }

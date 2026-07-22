@@ -1,10 +1,11 @@
 <nav>
     <a href="/">Home</a>
     <a href="/games">Games</a>
-
+    
     <% if (user) { %>
-        <a href="/dashboard">Dashboard</a>
+        <a href="/games/mine">My Games</a>
         <a href="/games/new">Add Game</a>
+        <a href="/dashboard">Dashboard</a>
 
         <form action="/auth/sign-out?_method=DELETE" method="POST">
             <button type="submit">Sign Out</button>
