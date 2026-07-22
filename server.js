@@ -12,6 +12,7 @@ const { MongoStore } = require("connect-mongo")
 
 const authCtrl = require("./controllers/auth")
 const gamesController = require("./controllers/games")
+const reviewsController = require("./controllers/reviews")
 const passUserToView = require("./middleware/pass-user-to-view.js")
 const isSignedIn = require("./middleware/is-signed-in.js")
 
@@ -61,6 +62,8 @@ app.get("/games/:gameId", gamesController.show)
 app.delete('/games/:gameId', isSignedIn, gamesController.deleteGame)
 app.get('/games/:gameId/edit', isSignedIn, gamesController.edit)
 app.put('/games/:gameId', isSignedIn, gamesController.update)
+
+app.post("/games/:gameId/reviews", isSignedIn, reviewsController.create)
 
 app.get("/dashboard", async (req, res) => {
     if (!req.session.user) {
