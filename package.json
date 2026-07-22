@@ -1,23 +1,28 @@
 {
-  "name": "GameVault",
+  "name": "gamevault",
   "version": "1.0.0",
-  "description": "",
+  "description": "A game tracking app where users can manage games and reviews.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SEB-14-Bahrain/men-auth-template.git"
+    "url": "git+https://github.com/Jassiiimm/GameVault.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "games",
+    "tracker",
+    "express",
+    "mongoose"
+  ],
+  "author": "Jassim Alawainati",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/SEB-14-Bahrain/men-auth-template/issues"
+    "url": "https://github.com/Jassiiimm/GameVault/issues"
   },
-  "homepage": "https://github.com/SEB-14-Bahrain/men-auth-template#readme",
+  "homepage": "https://github.com/Jassiiimm/GameVault#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "connect-mongo": "^6.0.0",
