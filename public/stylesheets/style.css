@@ -50,3 +50,12 @@ nav form {
 nav button {
     margin: 0;
 }
+
+article {
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e293b;
+    border-radius: 10px;
+}
