@@ -1,4 +1,5 @@
 const Game = require('../models/game')
+const Review = require('../models/review')
 
 const newGame = (req, res) => {
     res.render('games/new.ejs')
@@ -45,8 +46,13 @@ const show = async (req, res) => {
         return res.redirect('/games')
     }
 
+    const reviews = await Review.find({
+        game: game._id,
+    }).populate('author')
+
     res.render('games/show.ejs', {
         game: game,
+        reviews: reviews,
     })
 }
 
