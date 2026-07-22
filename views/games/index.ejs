@@ -8,11 +8,13 @@
 </head>
 <body>
     <%- include('../partials/nav.ejs') %>
+
     <h1>Games</h1>
-    <a href="/games/new">Add a Game</a>
+
+    <a class="add-game-link" href="/games/new">Add a Game</a>
     
     <% if (games.length === 0) { %>
-        <p>No games have been added yet</p>
+        <p>No games have been added yet.</p>
     <% } %>
 
     <% games.forEach((game) => { %>

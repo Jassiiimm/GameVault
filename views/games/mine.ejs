@@ -6,32 +6,32 @@
     <title>My Games</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
-<body> 
+<body>
     <%- include('../partials/nav.ejs') %>
+
     <h1>My Games</h1>
-    <a href="/games/new">Add a Game</a>
+
+    <a class="add-game-link" href="/games/new">Add a Game</a>
     
     <% if (games.length === 0) { %>
         <p>You have not added any games yet.</p>
-        <% } %>
+    <% } %>
         
-        <% games.forEach((game) => { %>
-            <article>
-                <% if (game.image) { %>
-                    <img src="<%= game.image %>" alt="<%= game.title %>">
-                    <% } %>
+    <% games.forEach((game) => { %>
+        <article>
+            <% if (game.image) { %>
+                <img src="<%= game.image %>" alt="<%= game.title %>">
+            <% } %>
                     
-                    <h2>
-                        <a href="/games/<%= game._id %>">
-                            <%= game.title %>
-                        </a>
-                    </h2>
+            <h2>
+                <a href="/games/<%= game._id %>">
+                    <%= game.title %>
+                </a>
+            </h2>
                     
-                    
-                    <p>Platform: <%= game.platform %></p>
-                    <p>Status: <%= game.status %></p>
-                
-                </article>
+            <p>Platform: <%= game.platform %></p>
+            <p>Status: <%= game.status %></p>
+        </article>
     <% }) %>
 </body>
 </html>

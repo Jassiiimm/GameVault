@@ -140,3 +140,9 @@ article form {
 article form button {
     background-color: #dc2626;
 }
+
+.add-game-link {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+}
