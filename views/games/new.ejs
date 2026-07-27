@@ -8,24 +8,22 @@
 </head>
 <body>
     <%- include('../partials/nav.ejs') %>
-
     <h1>Search for a Game</h1>
-
+    
     <form action="/games/search" method="GET">
         <label for="searchTitle">Game Title:</label>
-
+        
         <input
-            type="text"
-            id="searchTitle"
-            name="title"
-            required
+        type="text"
+        id="searchTitle"
+        name="title"
+        required
         >
-
+        
         <button type="submit">Search</button>
     </form>
-
+    
     <h2>Add a Game</h2>
-
     <form action="/games" method="POST">
         <label for="title">Title:</label>
 

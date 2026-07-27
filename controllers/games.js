@@ -9,17 +9,17 @@ const newGame = (req, res) => {
 }
 
 const search = async (req, res) => {
-    const gameTitle = req.query.title
+const gameTitle = req.query.title
 
-    const response = await fetch(
-        `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&search=${encodeURIComponent(gameTitle)}`
+const response = await fetch(
+    `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&search=${encodeURIComponent(gameTitle)}`
     )
+    
+const data = await response.json()
 
-    const data = await response.json()
-
-    res.render('games/search.ejs', {
-        games: data.results,
-    })
+res.render('games/search.ejs', {
+    games: data.results,
+})
 }
 
 const create = async (req, res) => {
@@ -33,17 +33,21 @@ const create = async (req, res) => {
 
 const index = async (req, res) => {
     let games
-
+    
     if (req.session.user) {
-        games = await Game.find({
-            $or: [
-                { isPublic: true },
-                { owner: req.session.user._id },
-            ],
+        const publicGames = await Game.find({
+            isPublic: true
         })
+
+        const privateGames = await Game.find({
+            isPublic: false,
+            owner: req.session.user._id
+        })
+
+        games = publicGames.concat(privateGames)
     } else {
         games = await Game.find({
-            isPublic: true,
+            isPublic: true
         })
     }
 
@@ -53,11 +57,9 @@ const index = async (req, res) => {
 }
 
 const show = async (req, res) => {
-    const game = await Game.findById(req.params.gameId)
+const game = await Game.findById(req.params.gameId)
 
-    const isCreator =
-        req.session.user &&
-        game.owner.equals(req.session.user._id)
+const isCreator = req.session.user && game.owner.equals(req.session.user._id)
 
     if (!game.isPublic && !isCreator) {
         return res.redirect('/games')

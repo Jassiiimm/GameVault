@@ -10,7 +10,7 @@ const create = async (req, res) => {
 }
 
 const edit = async (req, res) => {
-    const review = await Review.findById(req.params.reviewId)
+const review = await Review.findById(req.params.reviewId)
 
     if (!review.author.equals(req.session.user._id)) {
         return res.redirect(`/games/${req.params.gameId}`)
@@ -23,7 +23,7 @@ const edit = async (req, res) => {
 }
 
 const update = async (req, res) => {
-    const review = await Review.findById(req.params.reviewId)
+const review = await Review.findById(req.params.reviewId)
 
     if (!review.author.equals(req.session.user._id)) {
         return res.redirect(`/games/${req.params.gameId}`)
@@ -38,7 +38,7 @@ const update = async (req, res) => {
 }
 
 const deleteReview = async (req, res) => {
-    const review = await Review.findById(req.params.reviewId)
+const review = await Review.findById(req.params.reviewId)
 
     if (!review.author.equals(req.session.user._id)) {
         return res.redirect(`/games/${req.params.gameId}`)

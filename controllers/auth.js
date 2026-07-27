@@ -42,46 +42,45 @@ const signUp = async (req, res) => {
     })
 }
 
-
-   const showSignInForm = (req, res) => {
+const showSignInForm = (req, res) => {
     res.render('auth/sign-in.ejs', {
         error: null
     })
 }
 
-    const signIn = async (req, res) => {
-    const userInDatabase = await User.findOne({
-        username: req.body.username
+const signIn = async (req, res) => {
+const userInDatabase = await User.findOne({
+    username: req.body.username
+})
+
+if (!userInDatabase) {
+    return res.render('auth/sign-in.ejs', {
+        error: 'User does not exist.'
     })
+   }
+   
+const validPassword = bcrypt.compareSync(
+    req.body.password,
+    userInDatabase.password
+)
 
-    if (!userInDatabase) {
-        return res.render('auth/sign-in.ejs', {
-            error: 'User does not exist.'
-        })
-    }
-
-    const validPassword = bcrypt.compareSync(
-        req.body.password,
-        userInDatabase.password
-    )
-
-    if (!validPassword) {
-        return res.render('auth/sign-in.ejs', {
-            error: 'Login failed. Please try again.'
-        })
-    }
-
-    req.session.user = {
-        username: userInDatabase.username,
-        _id: userInDatabase._id
-    }
-
-    req.session.save(() => {
-        res.redirect('/')
+if (!validPassword) {
+    return res.render('auth/sign-in.ejs', {
+        error: 'Login failed. Please try again.'
     })
 }
 
-    const signOut = async (req, res) => {
+req.session.user = {
+    username: userInDatabase.username,
+    _id: userInDatabase._id
+}
+
+req.session.save(() => {
+    res.redirect('/')
+})
+}
+
+const signOut = async (req, res) => {
     req.session.destroy(() => {
         res.redirect('/')
     })
