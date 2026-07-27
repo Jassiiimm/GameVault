@@ -40,11 +40,11 @@ I chose GameVault because I enjoy video games and wanted to create an app that h
 
 ### Use GameVault
 
-
+[Open GameVault](https://gamevault-y35u.onrender.com)
 
 ### Planning Materials
 
-GameVault Trello Board
+[GameVault Trello Board](https://trello.com/c/5GI0wocH)
 
 ## How to Use the App
 
