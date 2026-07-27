@@ -42,13 +42,14 @@ const signUp = async (req, res) => {
     })
 }
 
-const showSignInForm = (req, res) => {
+
+   const showSignInForm = (req, res) => {
     res.render('auth/sign-in.ejs', {
         error: null
     })
 }
 
-const signIn = async (req, res) => {
+    const signIn = async (req, res) => {
     const userInDatabase = await User.findOne({
         username: req.body.username
     })
@@ -80,7 +81,7 @@ const signIn = async (req, res) => {
     })
 }
 
-const signOut = async (req, res) => {
+    const signOut = async (req, res) => {
     req.session.destroy(() => {
         res.redirect('/')
     })

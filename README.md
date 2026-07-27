@@ -1,59 +1,92 @@
-GameVault
+# GameVault
 
 GameVault is a video game tracking app made with Node.js, Express, EJS, MongoDB, and CSS
 
 Users can create an account and add games to their collection. They can record the platform, genre, playing status, hours played, description, and game image. Games can also be set as public or private
 
+Users can search for games using the RAWG API. The game title and image are automatically added to the Add Game form
+
 Users can add ratings and reviews to games. They can edit or delete the games and reviews that they created
 
 I chose GameVault because I enjoy video games and wanted to create an app that helps users keep track of the games they want to play, are currently playing, or have completed
 
-<!-- Add GameVault screenshot here after the final design is finished -->
+## Screenshots
 
-Getting Started
+### Home
 
-Use GameVault
+![Home](./public/images/Home.png)
 
-The deployed app link will be added after deployment.
+### Games
 
-Planning Materials
+![Games](./public/images/Games.png)
+
+### My Games
+
+![My Games](./public/images/My-Games.png)
+
+### Add Game
+
+![Add Game](./public/images/Add-Game.png)
+
+### Dashboard
+
+![Dashboard](./public/images/Dashboard.png)
+
+### Edit and Delete Reviews
+
+![Edit and Delete Reviews](./public/images/Edit-Delete-reviews.png)
+
+## Getting Started
+
+### Use GameVault
+
+
+
+### Planning Materials
 
 GameVault Trello Board
 
-How to Use the App
+## How to Use the App
 
-Create an account or sign in.
+Create an account or sign in
 
-Open the Games page to view public games.
+Open the Games page to view public games
 
-Click Add Game to add a new game.
+Click Add Game to add a new game
 
-Enter the game information and choose whether it is public or private.
+Search for a game using the search form
 
-Open My Games to view the games you created.
+Select a game to automatically fill the title and image
 
-Click a game to view its details.
+Enter the remaining game information and choose whether it is public or private
 
-Edit or delete a game that you created.
+Open My Games to view the games you created
 
-Add a rating and review to a game.
+Click a game to view its details
 
-Edit or delete a review that you created.
+Edit or delete a game that you created
 
-Sign out when you are finished.
+Add a rating and review to a game
 
-Installation
+Edit or delete a review that you created
+
+Sign out when you are finished
+
+## Installation
 
 Clone the repository and install the project packages.
 
 git clone https://github.com/Jassiiimm/GameVault.git
+
 cd GameVault
+
 npm install
+
 npm start
 
-A .env file is also required with the MongoDB connection and session secret.
+A .env file is also required with the MongoDB connection, session secret, and RAWG API key
 
-Technologies Used
+## Technologies Used
 
 HTML
 
@@ -79,26 +112,30 @@ Connect Mongo
 
 Method Override
 
-Future Enhancements
+RAWG API
 
-Add a search feature for games.
+## Attributions
 
-Allow users to filter games by platform, genre, or status.
+Game information and images are provided by RAWG
 
-Allow users to upload game images.
+## Future Enhancements
 
-Display the average rating for each game.
+Allow users to filter games by platform, genre, or status
 
-Improve the design for smaller screens.
+Allow users to upload game images
 
-Credits
+Display the average rating for each game
 
-Thanks to my GA instructor Nabila Ayaba, and my IAs Bidoor Almannaei and Zainab Fadhel for helping and giving feedback during the project.
+Improve the design for smaller screens
 
-Contributing
+## Credits
 
-This project was made for my Unit 2 project.
+Thanks to my GA instructor Nabila Ayaba, and my IAs Bidoor Almannaei and Zainab Fadhel for helping and giving feedback during the project
 
-License
+## Contributing
 
-No license added.
+This project was made for my Unit 2 project
+
+## License
+
+No license added
